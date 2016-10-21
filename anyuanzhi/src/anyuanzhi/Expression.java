@@ -4,6 +4,11 @@ package anyuanzhi;
 
 public class Expression {
 private String  thisExpression;
+/**
+* 
+*
+* @author George Bush
+*/
 private boolean  simpleOrComplex;
 private Expression  head;
 private  boolean  abcOrNum;/**/
@@ -22,13 +27,13 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		simpleOrComplex = false;
 
 		head = new Expression();
-
+		char variousreplaceofjiahao = '+';
 		Expression temp = head;
 		Expression leftTemp = head;
 		Expression next = new Expression();
 		for(int i=0;i<ExpressionInput.length();)
 		{
-			if(ExpressionInput.charAt(i)=='+')
+			if(ExpressionInput.charAt(i)==variousreplaceofjiahao)
 			{
 				if(leftTemp.simpleOrComplex&&leftTemp.abc==null&&leftTemp.num==-1)
 				{
@@ -54,7 +59,7 @@ public void Set(String ExpressionInput) throws ArithmeticException
 				leftTemp=next;
 				temp=next;
 			} else if (ExpressionInput.charAt(i) == '*') {
-				if((leftTemp.simpleOrComplex&&leftTemp.abc==null&&leftTemp.num==-1)||(temp.simpleOrComplex&&temp.abc==null&&temp.num==-1))
+				if(leftTemp.simpleOrComplex&&leftTemp.abc==null&&leftTemp.num==-1||temp.simpleOrComplex&&temp.abc==null&&temp.num==-1)
 				{
 					System.out.println("ERROR!3");
 					throw new ArithmeticException();
@@ -68,44 +73,45 @@ public void Set(String ExpressionInput) throws ArithmeticException
 
 			else if (ExpressionInput.charAt(i)=='^')
 			{
-				int j;
+				int variousreplaceofj;
 				i++;
-				for(;ExpressionInput.charAt(i)==' ';i++);
-				for (j = i; (ExpressionInput
-				.charAt(j) >= '0' && ExpressionInput
-						.charAt(j) <= '9');)
+				for(;ExpressionInput.charAt(i)==' ';i++)
+				{}
+				for (variousreplaceofj = i; (ExpressionInput
+				.charAt(variousreplaceofj) >= '0' && ExpressionInput
+						.charAt(variousreplaceofj) <= '9');)
 				{
-					j++;
-					if ((j - i) >= changliang1)
+					variousreplaceofj++;
+					if ((variousreplaceofj - i) >= changliang1)
 					{
 						System.out.println("ERROR!4");
 						throw new ArithmeticException();
 					}
-					if (j == ExpressionInput.length()) {
+					if (variousreplaceofj == ExpressionInput.length()) {
 						break;
 					}
 				}
-				if(i==j)
+				if(i==variousreplaceofj)
 				{
 					System.out.println("ERROR!5");
 					throw new ArithmeticException();
 				}
-				temp.pow=Long.parseLong(ExpressionInput.substring(i,j));
-				i=j;
+				temp.pow=Long.parseLong(ExpressionInput.substring(i,variousreplaceofj));
+				i=variousreplaceofj;
 				continue;
 			}
 			else if (ExpressionInput.charAt(i)=='(')
 			{
 				int x=1;
-				int j;
-				for (j=i;ExpressionInput.charAt(j)!=')'||x>0;)
+				int variousreplaceofj;
+				for (variousreplaceofj=i;ExpressionInput.charAt(variousreplaceofj)!=')'||x>0;)
 				{
-					j++;
-					if(ExpressionInput.charAt(j)=='(')
+					variousreplaceofj++;
+					if(ExpressionInput.charAt(variousreplaceofj)=='(')
 						x++;
-					if(ExpressionInput.charAt(j)==')')
+					if(ExpressionInput.charAt(variousreplaceofj)==')')
 						x--;
-					if (j==ExpressionInput.length())
+					if (variousreplaceofj==ExpressionInput.length())
 					{
 						if (x>0)
 						{
@@ -115,30 +121,28 @@ public void Set(String ExpressionInput) throws ArithmeticException
 						break;
 					}
 				}
-				if(next.num!=-1||next.abc!=null||next.simpleOrComplex==false)
-				{
+
 					next = new Expression();
 					temp.right=next;
 					temp=next;
-				}
-				next.Set(ExpressionInput.substring(i+1,j));
+				next.Set(ExpressionInput.substring(i+1,variousreplaceofj));
 				if (head.down==null && head.right==null)
 				{
 					head.down=next;
 					leftTemp=next;
 					temp=next;
 				}
-				i=j;
+				i=variousreplaceofj;
 
 			}
 			
 			else if ((ExpressionInput.charAt(i)>='A'&&ExpressionInput.charAt(i)<='Z') || (ExpressionInput.charAt(i)>='a'&&ExpressionInput.charAt(i)<='z'))
 			{
-				int j;
-				for(j=i;(ExpressionInput.charAt(j)>='A'&&ExpressionInput.charAt(j)<='Z') || (ExpressionInput.charAt(j)>='a'&&ExpressionInput.charAt(j)<='z');)
+				int variousreplaceofj;
+				for(variousreplaceofj=i;(ExpressionInput.charAt(variousreplaceofj)>='A'&&ExpressionInput.charAt(variousreplaceofj)<='Z') || (ExpressionInput.charAt(variousreplaceofj)>='a'&&ExpressionInput.charAt(variousreplaceofj)<='z');)
 				{
-					j++;
-					if (j==ExpressionInput.length())
+					variousreplaceofj++;
+					if (variousreplaceofj==ExpressionInput.length())
 						break;
 				}
 				if(next.num!=-1||next.abc!=null||next.simpleOrComplex==false)
@@ -147,7 +151,7 @@ public void Set(String ExpressionInput) throws ArithmeticException
 					temp.right=next;
 					temp=next;
 				}
-				next.abc=ExpressionInput.substring(i, j);
+				next.abc=ExpressionInput.substring(i, variousreplaceofj);
 				next.abcOrNum=true;
 				next.pow=1;
 				if (head.down==null && head.right==null)
@@ -156,22 +160,22 @@ public void Set(String ExpressionInput) throws ArithmeticException
 					leftTemp=next;
 					temp=next;
 				}
-				i=j;
+				i=variousreplaceofj;
 				continue;
 			}
 			else if (ExpressionInput.charAt(i)>='0' && ExpressionInput.charAt(i)<='9')
 			{
-				int j;
-				for(j=i;ExpressionInput.charAt(j)>='0' && ExpressionInput.charAt(j)<='9';)
+				int variousreplaceofj;
+				for(variousreplaceofj=i;ExpressionInput.charAt(variousreplaceofj)>='0' && ExpressionInput.charAt(variousreplaceofj)<='9';)
 				{
-					j++;
-					if((j-i)>=18)
+					variousreplaceofj++;
+					if((variousreplaceofj-i)>=18)
 					{
 						System.out.println("ERROR!7");
 						throw new ArithmeticException();
 					}
-					if (j==ExpressionInput.length())
-						break;
+					if (variousreplaceofj==ExpressionInput.length())
+						{break;}
 				}
 				if(next.num!=-1||next.abc!=null||next.simpleOrComplex==false)
 				{
@@ -179,7 +183,7 @@ public void Set(String ExpressionInput) throws ArithmeticException
 					temp.right=next;
 					temp=next;
 				}
-				next.num=Long.parseLong(ExpressionInput.substring(i, j));
+				next.num=Long.parseLong(ExpressionInput.substring(i, variousreplaceofj));
 				next.abcOrNum=false;
 				next.pow=1;
 				if (head.down==null && head.right==null)
@@ -188,7 +192,7 @@ public void Set(String ExpressionInput) throws ArithmeticException
 					leftTemp=next;
 					temp=next;
 				}
-				i=j;
+				i=variousreplaceofj;
 				continue;
 			}
 			else if (ExpressionInput.charAt(i)!='\t'&&ExpressionInput.charAt(i)!=' ')
@@ -226,13 +230,14 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		if (simpleOrComplex)
 		{
 			if(abcOrNum)
-				System.out.print(abc);
+			{	System.out.print(abc);}
 			else 
-				System.out.print(num);
+			{	System.out.print(num);}
 		}
 		else
 		{
-			Expression next,leftHead;
+			Expression next;
+			Expression leftHead;
 			leftHead=head.down;
 			while(leftHead != null)
 			{
@@ -307,9 +312,9 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		{
 			for(Expression i=head.down;i!=null;i=i.down)
 			{
-				for(Expression j=i;j!=null;j=j.right)
+				for(Expression variousreplaceofj=i;variousreplaceofj!=null;variousreplaceofj=variousreplaceofj.right)
 				{
-					j.change(x, n);
+					variousreplaceofj.change(x, n);
 				}
 			}
 		}
@@ -326,31 +331,31 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		}
 		else
 		{
-			Expression i,j;
+			Expression i,variousreplaceofj;
 			Expression leftTemp=null;
 			Expression plusTemp=null;
 			for(i=head.down;i!=null;i=i.down)
 			{
 				leftTemp=null;
 				Expression lalalaTemp=null;
-				for(j=i;j!=null;j=j.right)
+				for(variousreplaceofj=i;variousreplaceofj!=null;variousreplaceofj=variousreplaceofj.right)
 				{
-					j.simplify();
-					if(!j.abcOrNum&&j.simpleOrComplex)
+					variousreplaceofj.simplify();
+					if(!variousreplaceofj.abcOrNum&&variousreplaceofj.simpleOrComplex)
 					{
 						if(leftTemp==null)
-							leftTemp=j;
+							leftTemp=variousreplaceofj;
 						else
 						{
-							leftTemp.num=leftTemp.num*j.num;
-							lalalaTemp.right=j.right;
-							//j=lalalaTemp;
+							leftTemp.num=leftTemp.num*variousreplaceofj.num;
+							lalalaTemp.right=variousreplaceofj.right;
+							//variousreplaceofj=lalalaTemp;
 							continue;
 						}
 					}
-					lalalaTemp=j;
+					lalalaTemp=variousreplaceofj;
 				}
-				if(leftTemp!=null&&leftTemp!=i)
+				if(leftTemp!=null&&leftTemp.equals(i)==true)
 				{
 					Expression preTemp,topTemp,temp;
 					for(preTemp=i;preTemp.right!=leftTemp;preTemp=preTemp.right);
@@ -420,38 +425,38 @@ public void Set(String ExpressionInput) throws ArithmeticException
 			for(Expression i=head.down;i!=null;i=i.down)
 			{
 				flag=1;
-				for(Expression j=i;j!=null;j=j.right)
+				for(Expression variousreplaceofj=i;variousreplaceofj!=null;variousreplaceofj=variousreplaceofj.right)
 				{
-					if(!j.simpleOrComplex)
+					if(!variousreplaceofj.simpleOrComplex)
 					{
 						Expression copy = new Expression();
-						copy.pow=j.pow;
-						copy.Set(j.thisExpression);
-						copy.right = j.right;
-						j.right = copy;
-						j.pow=1;
-						flag *= j.derivative(var);
-						j=j.right;
+						copy.pow=variousreplaceofj.pow;
+						copy.Set(variousreplaceofj.thisExpression);
+						copy.right = variousreplaceofj.right;
+						variousreplaceofj.right = copy;
+						variousreplaceofj.pow=1;
+						flag *= variousreplaceofj.derivative(var);
+						variousreplaceofj=variousreplaceofj.right;
 					}
 					else 
-						flag *= j.derivative(var);
+						flag *= variousreplaceofj.derivative(var);
 					if (flag == 0)
 					{
 						flag2=0;
-						if(j.pow==1)
+						if(variousreplaceofj.pow==1)
 						{
-							j.num=1;
-							j.abcOrNum=false;
+							variousreplaceofj.num=1;
+							variousreplaceofj.abcOrNum=false;
 						}
 						else
 						{
 							Expression powTemp = new Expression();
-							powTemp.right=j.right;
-							j.right=powTemp;
+							powTemp.right=variousreplaceofj.right;
+							variousreplaceofj.right=powTemp;
 							powTemp.abcOrNum=false;
-							powTemp.num=j.pow;
-							j.pow--;
-							j=j.right;
+							powTemp.num=variousreplaceofj.pow;
+							variousreplaceofj.pow--;
+							variousreplaceofj=variousreplaceofj.right;
 						}
 					}
 					
@@ -475,9 +480,9 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		if(commandInput.substring(1,4).equals("d/d"))
 		{
 			String var = new String();
-			int j;
-			for(j=4;j<commandInput.length()&&commandInput.charAt(j)!= ' ';j++);
-			var = commandInput.substring(4,j);
+			int variousreplaceofj;
+			for(variousreplaceofj=4;variousreplaceofj<commandInput.length()&&commandInput.charAt(variousreplaceofj)!= ' ';variousreplaceofj++);
+			var = commandInput.substring(4,variousreplaceofj);
 			lalala.derivative(var);
 		}
 		else if (commandInput.substring(1,9).equals("simplify"))
@@ -488,17 +493,17 @@ public void Set(String ExpressionInput) throws ArithmeticException
 			{
 				if((commandInput.charAt(i)>='A'&&commandInput.charAt(i)<='Z') || (commandInput.charAt(i)>='a'&&commandInput.charAt(i)<='z'))
 				{
-					int j;
-					for(j=i;commandInput.charAt(j)!= '=';j++);
-					x[n][0] = commandInput.substring(i,j);
-					i = j;
+					int variousreplaceofj;
+					for(variousreplaceofj=i;commandInput.charAt(variousreplaceofj)!= '=';variousreplaceofj++);
+					x[n][0] = commandInput.substring(i,variousreplaceofj);
+					i = variousreplaceofj;
 				}
 				else if(commandInput.charAt(i)>='0'&&commandInput.charAt(i)<='9')
 				{
-					int j;
-					for(j=i;j <commandInput.length()&&commandInput.charAt(j)!= ' ';j++);
-					x[n][1] = commandInput.substring(i,j);
-					i = j;
+					int variousreplaceofj;
+					for(variousreplaceofj=i;variousreplaceofj <commandInput.length()&&commandInput.charAt(variousreplaceofj)!= ' ';variousreplaceofj++);
+					x[n][1] = commandInput.substring(i,variousreplaceofj);
+					i = variousreplaceofj;
 					n++;
 				}
 			}
