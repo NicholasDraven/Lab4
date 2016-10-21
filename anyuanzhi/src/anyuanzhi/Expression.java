@@ -25,7 +25,11 @@ public void Set(String ExpressionInput) throws ArithmeticException
 		final int changliang1 = 18;
 		thisExpression=ExpressionInput;
 		simpleOrComplex = false;
-
+		String str=null;
+		if (str.equals("0"))
+		{
+			System.out.print("0");
+		}
 		head = new Expression();
 		char variousreplaceofjiahao = '+';
 		Expression temp = head;
