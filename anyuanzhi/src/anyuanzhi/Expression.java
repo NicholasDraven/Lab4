@@ -19,7 +19,7 @@ private boolean positiveOrNegative;
 
 private Expression down;
 private Expression right;
-
+			
 public void Set(String ExpressionInput) throws ArithmeticException
 {
 		final int changliang1 = 18;
